@@ -58,7 +58,52 @@
         <div class="container">
             <h1>To-Do List</h1>
         </div>
+        <div class="due-today-container">
+            <h2>Due Today</h2>
+            <table class="due-today-table">
+                <thead>
+                    <tr>
+                        <th>Priority</th>
+                        <th>Task</th>
+                        <th>Time</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Low</td>
+                        <td>Grocery Shopping</td>
+                        <td>Noon</td>
+                        <td class="status">
+                            <div class="circle" onclick="toggleStatus(this)"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Medium</td>
+                        <td>Go to the gym</td>
+                        <td>4pm</td>
+                        <td class="status">
+                            <div class="circle" onclick="toggleStatus(this)"></div>
+                        </td>                    </tr>
+                    <tr>
+                        <td>High</td>
+                        <td>Study for my test</td>
+                        <td>all-day</td>
+                        <td class="status">
+                            <div class="circle" onclick="toggleStatus(this)"></div>
+                        </td>                    </tr>
+                    <tr>
+                        <td>Medium</td>
+                        <td>Watch a movie with my girlfriend at my dads house with my siblings</td>
+                        <td>10pm</td>
+                        <td class="status">
+                            <div class="circle" onclick="toggleStatus(this)"></div>
+                        </td>                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
+    <script src="script.js"></script>
 </body>
 <script>
     let btn = document.querySelector('#btn')

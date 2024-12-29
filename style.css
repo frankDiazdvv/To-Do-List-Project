@@ -24,11 +24,12 @@
     background-color: #12171e;
     padding: 0.4rem 0.8rem;
     transition: all .2s ease;
+    z-index: 10;
 }
 
 .sidebar.active ~ .main-content {
-    left: 250px;
-    width: calc(100% - 250px);
+    left: 270px;
+    width: calc(100% - 334px);
 }
 
 .sidebar.active {
@@ -93,8 +94,6 @@
 .sidebar.active p {
     opacity: 1;
 }
-
-
  
 .sidebar ul li {
     display: flex;
@@ -138,6 +137,7 @@
 
 .sidebar ul li .tooltip {
     position:absolute;
+    background-color: white;
     left: 125px;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -146,7 +146,6 @@
     box-shadow: 0 .5rem 2rem grey;
     padding: .4rem 1.2rem;
     line-height: 1.8rem;
-    z-index: 20;
     display: none;
 }
 
@@ -162,12 +161,118 @@
     padding-right: .7rem;
 }
 
+/* MAIN CONTENT */
+
 .main-content {
+    background-color: #1e242b;
+    color: white;
+    z-index: 1;
     position: relative;
     min-height: 100vh;
     top: 0;
     left: 75px;
     transition: all 0.2s ease;
-    width: calc(100% - 90px);
+    width: calc(100% - 139px);
     padding: 1rem 2rem;
+    display: grid;
+    grid-template-columns: repeat(2, 2fr);
+    grid-template-rows: 80px repeat(2, 1fr);
+    grid-template-areas: 
+    'header header'
+    'due-today all-task'
+    'bottom-left all-task';
+
 }
+
+/* MAIN CONTENT -- DUE TODAY */
+
+.due-today-container {
+    color: white;
+    grid-area: due-today;
+    display: flex;
+    width: 100%;
+}
+
+.due-today-table {
+    display: block;
+    align-self: center;
+    border-collapse: collapse;
+    width: 35rem;
+    height: 15rem;
+    overflow: auto;
+    table-layout: fixed;
+    border-radius: 10px;
+    outline: 2px solid white;
+}
+
+.due-today-table thead, .due-today-table td {
+    height: 2rem;
+}
+
+.due-today-table th, .due-today-table td {
+    /* General alignment and orientation for all elements */
+    text-align: left;
+    vertical-align: middle;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    padding: 5px;
+}
+
+
+.due-today-table th:nth-child(1),
+.due-today-table td:nth-child(1) {
+    width: 60px;
+}
+
+.due-today-table th:nth-child(3),
+.due-today-table td:nth-child(3) {
+    width: 80px;
+}
+
+.due-today-table td:nth-child(3) {
+    text-align: right;
+}
+
+.due-today-table th:nth-child(4),
+.due-today-table td:nth-child(4) {
+    text-align: center;
+}
+
+.due-today-table th {
+    text-align: center;
+    background-color: #12171e;
+    color: white;
+    border: 2px solid white;
+}
+
+.due-today-table tr{
+    border-bottom: 1px solid grey ;
+}
+
+
+tr.completed td {
+    text-decoration: line-through;
+    color: whitesmoke
+}
+
+.circle {
+    width: 15px;
+    height: 15px;
+    border: 2px solid white; /* empty circle */
+    border-radius: 20%;
+    cursor: pointer;
+    background-color: transparent;
+    display: inline-block;
+    transition: background-color .2s ease;
+    margin-top: 5px;
+}
+
+.circle.full {
+    background-color: green;
+}
+
+.circle:hover {
+    background-color: white;
+}
+
+
