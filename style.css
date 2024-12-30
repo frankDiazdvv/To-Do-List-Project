@@ -179,37 +179,47 @@
     grid-template-rows: 80px repeat(2, 1fr);
     grid-template-areas: 
     'header header'
-    'due-today all-task'
-    'bottom-left all-task';
+    'due-today all-tasks'
+    'bottom-left all-tasks';
 
 }
 
 /* MAIN CONTENT -- DUE TODAY */
 
 .due-today-container {
-    color: white;
     grid-area: due-today;
     display: flex;
-    width: 100%;
+    flex-direction: column;
+    width: (100% - 3rem);
+    color: white;
+    padding-inline: 3rem;
+
 }
 
-.due-today-table {
+.table-headers {
+    text-align: left;
+    margin: 5px;
+}
+
+.task-table { 
+    /*General tables alignment and view*/
     display: block;
-    align-self: center;
     border-collapse: collapse;
-    width: 35rem;
+    width: 100%;
     height: 15rem;
     overflow: auto;
     table-layout: fixed;
-    border-radius: 10px;
-    outline: 2px solid white;
+    border: 1px solid rgb(40, 36, 40);
+    border-radius: 0 0 10px 10px;
+    box-shadow: 10px 10px 20px black;
 }
 
-.due-today-table thead, .due-today-table td {
+.task-table thead, .task-table td {
     height: 2rem;
+    width: 100%;
 }
 
-.due-today-table th, .due-today-table td {
+.task-table th, .task-table td {
     /* General alignment and orientation for all elements */
     text-align: left;
     vertical-align: middle;
@@ -219,33 +229,40 @@
 }
 
 
-.due-today-table th:nth-child(1),
-.due-today-table td:nth-child(1) {
+.task-table th:nth-child(1),
+.task-table td:nth-child(1) {
     width: 60px;
 }
 
-.due-today-table th:nth-child(3),
-.due-today-table td:nth-child(3) {
+.task-table th:nth-child(2),
+.task-table td:nth-child(2) {
+    min-width: 12rem;
+}
+
+.task-table th:nth-child(3),
+.task-table td:nth-child(3) {
     width: 80px;
 }
 
-.due-today-table td:nth-child(3) {
+.task-table td:nth-child(3) {
     text-align: right;
 }
 
-.due-today-table th:nth-child(4),
-.due-today-table td:nth-child(4) {
+.task-table th:nth-child(4),
+.task-table td:nth-child(4),
+.task-table th:nth-child(5),
+.task-table td:nth-child(5) {
     text-align: center;
 }
 
-.due-today-table th {
+.task-table th {
     text-align: center;
     background-color: #12171e;
     color: white;
-    border: 2px solid white;
+    border: 1px solid white;
 }
 
-.due-today-table tr{
+.task-table tr{
     border-bottom: 1px solid grey ;
 }
 
@@ -258,7 +275,7 @@ tr.completed td {
 .circle {
     width: 15px;
     height: 15px;
-    border: 2px solid white; /* empty circle */
+    border: 1px solid white; /* empty circle */
     border-radius: 20%;
     cursor: pointer;
     background-color: transparent;
@@ -274,5 +291,25 @@ tr.completed td {
 .circle:hover {
     background-color: white;
 }
+
+
+/* MAIN CONTENT - ALL TASKS TABLE */
+
+.all-tasks-container {
+    grid-area: all-tasks;
+    display: flex;
+    flex-direction: column;
+    width: (100% - 3rem);
+    color: white;
+    padding-inline: 3rem;
+}
+
+.task-table__all-tasks {
+    height: 85%;
+    width: 100%;
+}
+
+
+
 
 

@@ -9,58 +9,17 @@
 </head>
 <body>
     <div class="sidebar">
-        <div class="top">
-            <div class="logo">
-                <i class="bx bxl-codepen"></i>
-                <span>To-Do List</span>
-            </div>
-            <i class="bx bx-menu" id="btn"></i>
-        </div>
-        <div class="user">
-            <img src="./assets/profile-pic.png" alt="Logo Picture" class="logo-img">
-            <div>
-                <p class="bold">Frank D.</p>
-                <p>Admin</p>
-            </div>
-        </div>
-        <ul>
-            <li>
-                <a href="#dashboard">
-                    <i class="bx bx-home-alt"></i>
-                    <span class="nav-item">Dashboard</span>
-                </a>
-                <span class="tooltip">Dashboard</span>
-            </li>
-            <li>
-                <a href="#addTask">
-                    <i class="bx bx-list-check"></i>
-                    <span class="nav-item">Add Task</span>
-                </a>
-                <span class="tooltip">Add Task</span>
-            </li>
-            <li>
-                <a href="#labels">
-                    <i class="bx bx-flag"></i>
-                    <span class="nav-item">Labels</span>
-                </a>
-                <span class="tooltip">Labels</span>
-            </li>
-            <li>
-                <a href="#about">
-                    <i class="bx bx-info-circle"></i>
-                    <span class="nav-item">About</span>
-                </a>
-                <span class="tooltip">About</span>
-            </li>
-        </ul>
+        <special-sidebar></special-sidebar>
     </div>
     <div class="main-content">
         <div class="container">
             <h1>To-Do List</h1>
         </div>
         <div class="due-today-container">
-            <h2>Due Today</h2>
-            <table class="due-today-table">
+            <div class="table-headers">
+                <h2>Due Today</h2>
+            </div>
+            <table class="task-table task-table__due-today">
                 <thead>
                     <tr>
                         <th>Priority</th>
@@ -78,27 +37,34 @@
                             <div class="circle" onclick="toggleStatus(this)"></div>
                         </td>
                     </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+        <div class="all-tasks-container">
+            <div class="table-headers">
+                <h2>All-Tasks</h2>
+            </div>
+            <table class="task-table task-table__all-tasks">
+                <thead>
+                    <tr>
+                        <th>Priority</th>
+                        <th>Task</th>
+                        <th>Due Date</th>
+                        <th>Time</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
                     <tr>
                         <td>Medium</td>
-                        <td>Go to the gym</td>
-                        <td>4pm</td>
+                        <td>Go get the dogs</td>
+                        <td>tomorrow</td>
+                        <td>All-day</td>
                         <td class="status">
                             <div class="circle" onclick="toggleStatus(this)"></div>
-                        </td>                    </tr>
-                    <tr>
-                        <td>High</td>
-                        <td>Study for my test</td>
-                        <td>all-day</td>
-                        <td class="status">
-                            <div class="circle" onclick="toggleStatus(this)"></div>
-                        </td>                    </tr>
-                    <tr>
-                        <td>Medium</td>
-                        <td>Watch a movie with my girlfriend at my dads house with my siblings</td>
-                        <td>10pm</td>
-                        <td class="status">
-                            <div class="circle" onclick="toggleStatus(this)"></div>
-                        </td>                    </tr>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
