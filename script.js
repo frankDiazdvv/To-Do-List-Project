@@ -1,7 +1,16 @@
-function toggleStatus(circleElement){
-    circleElement.classList.toggle("full");
+function toggleStatus(circleElement) {
     const row = circleElement.closest("tr");
-    row.classList.toggle("completed");
+    const taskIndex = row.dataset.index;
+
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    if (!tasks[taskIndex]) {
+        console.error("Task index invalid:", taskIndex);
+        return;
+    }
+
+    tasks[taskIndex].completed = !tasks[taskIndex].completed;
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    loadTasks();
 }
 
 class specialSidebar extends HTMLElement {
@@ -17,8 +26,8 @@ class specialSidebar extends HTMLElement {
         <div class="user">
             <img src="./assets/profile-pic.png" alt="Logo Picture" class="logo-img">
             <div>
-                <p class="bold">Frank D.</p>
-                <p>Admin</p>
+                <p class="bold">Created By</p>
+                <p>Francisco Diaz</p>
             </div>
         </div>
         <ul>
@@ -37,7 +46,7 @@ class specialSidebar extends HTMLElement {
                 <span class="tooltip">Add Task</span>
             </li>
             <li>
-                <a href="#labels">
+                <a href="labels.html">
                     <i class="bx bx-flag"></i>
                     <span class="nav-item">Labels</span>
                 </a>
@@ -51,8 +60,169 @@ class specialSidebar extends HTMLElement {
                 <span class="tooltip">About</span>
             </li>
         </ul>
-    `
+        `;
     }
 }
 
-customElements.define('special-sidebar', specialSidebar)
+customElements.define('special-sidebar', specialSidebar);
+
+const form = document.querySelector('#task-form');
+
+if (form) {
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const taskName = document.querySelector('#task-input').value;
+        const priority = document.querySelector('#priority').value;
+        const dueDate = document.querySelector('#due-date').value;
+        const dueTime = document.querySelector('#due-time').value;
+
+        if (!taskName || !priority) {
+            alert("Please fill in all required fields.");
+            return;
+        }
+
+        const task = {
+            taskName,
+            priority,
+            dueDate,
+            dueTime,
+            completed: false,
+        };
+
+        saveTask(task);
+        form.reset();
+    });
+}
+
+function saveTask(task) {
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    tasks.push(task);
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    loadTasks();
+}
+
+function loadTasks() {
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    const today = new Date().toISOString().split('T')[0];
+
+    const dueTodayTable = document.querySelector('.task-table__due-today tbody');
+    const allTasksTable = document.querySelector('.task-table__all-tasks tbody');
+
+
+    if (!dueTodayTable || !allTasksTable) {
+        console.error("Tables not found.");
+        return;
+    }
+
+    dueTodayTable.innerHTML = '';
+    allTasksTable.innerHTML = '';
+    
+
+    tasks.forEach((task, index) => {
+        const rowHTML = `
+            <tr data-index="${index}">
+                <td>${task.priority}</td>
+                <td>${task.taskName}</td>
+                <td>${task.dueDate}</td>
+                <td>${task.dueTime}</td>
+                <td class="status">
+                    <div class="circle ${task.completed ? 'full' : ''}"></div>
+                </td>
+            </tr>
+        `;
+
+        allTasksTable.insertAdjacentHTML('beforeend', rowHTML);
+
+        if (task.dueDate === today) {
+            const dueTodayRowHTML = `
+                <tr data-index="${index}">
+                    <td>${task.priority}</td>
+                    <td>${task.taskName}</td>
+                    <td>${task.dueTime}</td>
+                    <td class="status">
+                        <div class="circle ${task.completed ? 'full' : ''}"></div>
+                    </td>
+                </tr>
+            `;
+            dueTodayTable.insertAdjacentHTML('beforeend', dueTodayRowHTML);
+        }
+
+      
+    });
+
+    // Add event listeners for double-click and status toggle
+    document.querySelectorAll('.task-table__all-tasks tbody tr, .task-table__due-today tbody tr').forEach((row) => {
+        row.addEventListener('dblclick', () => deleteTask(row.dataset.index));
+    });
+
+    document.querySelectorAll('.task-table__all-tasks tbody tr').forEach((row) => {
+        row.addEventListener('click', () => toggleStatus(row.dataset.index));
+    });
+}
+
+function loadLabelTask() {      
+    console.log("Loading Label Tasks...");
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+    const lowPrioTable = document.querySelector('.left-table tbody');
+    const midPrioTable = document.querySelector('.middle-table tbody');
+    const highPrioTable = document.querySelector('.right-table tbody');
+
+    if (!lowPrioTable || !midPrioTable || !highPrioTable) {
+        console.error("Tables not found.");
+        return;
+    }
+
+    // Clear existing content
+    lowPrioTable.innerHTML = '';
+    midPrioTable.innerHTML = '';
+    highPrioTable.innerHTML = '';
+
+    // Loop through tasks and insert rows
+    tasks.forEach((task, index) => {
+        const labelRowHTML = `
+            <tr data-index="${index}">
+                <td>${task.priority}</td>
+                <td>${task.taskName}</td>
+            </tr>
+        `;
+
+        switch (task.priority.toLowerCase()) {
+            case 'low':
+                lowPrioTable.insertAdjacentHTML('beforeend', labelRowHTML);
+                break;
+            case 'med':
+                midPrioTable.insertAdjacentHTML('beforeend', labelRowHTML);
+                break;
+            case 'high':
+                highPrioTable.insertAdjacentHTML('beforeend', labelRowHTML);
+                break;
+            default:
+                console.warn("Unknown priority:", task.priority);
+        }
+    });
+
+    // Add event listeners for double-click and status toggle
+    document.querySelectorAll('.left-table tbody tr, .middle-table tbody tr, .right-table tbody tr').forEach((row) => {
+        row.addEventListener('dblclick', () => deleteTask(row.dataset.index));
+    });
+
+    document.querySelectorAll('.circle').forEach((circle) => {
+        circle.addEventListener('click', () => toggleStatus(circle));
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    loadLabelTask();
+});
+
+function deleteTask(index) {
+    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    tasks.splice(index, 1);
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    loadTasks();
+    loadLabelTask();
+}
+
+window.addEventListener('load', loadTasks);

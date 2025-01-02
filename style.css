@@ -174,6 +174,9 @@
     transition: all 0.2s ease;
     width: calc(100% - 139px);
     padding: 1rem 2rem;
+}
+
+.main-content-dashboard {
     display: grid;
     grid-template-columns: repeat(2, 2fr);
     grid-template-rows: 80px repeat(2, 1fr);
@@ -181,10 +184,14 @@
     'header header'
     'due-today all-tasks'
     'bottom-left all-tasks';
-
 }
 
 /* MAIN CONTENT -- DUE TODAY */
+
+.container {
+    justify-self: center;
+    align-self: center;
+}
 
 .due-today-container {
     grid-area: due-today;
@@ -216,8 +223,16 @@
 
 .task-table thead, .task-table td {
     height: 2rem;
-    width: 100%;
 }
+
+.task-table tbody tr:hover{
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    transition:font-size 0.1s ease;
+    cursor: pointer;
+}
+
 
 .task-table th, .task-table td {
     /* General alignment and orientation for all elements */
@@ -226,6 +241,7 @@
     overflow: hidden;
     text-overflow:ellipsis;
     padding: 5px;
+    width: 100%;
 }
 
 
@@ -305,11 +321,214 @@ tr.completed td {
 }
 
 .task-table__all-tasks {
-    height: 85%;
+    height: 35rem;
     width: 100%;
+}
+
+.task-table__all-tasks th:nth-child(3),
+.task-table__all-tasks td:nth-child(3) {
+    width: 20rem;
 }
 
 
 
+/* ADD-TASK */
+
+.main-content-add-task{
+    display: grid;
+    grid-template-rows: 80px 1fr;
+    grid-template-columns: 100%;
+    grid-template-areas: 
+        'header'
+        'add-task';
+}
+
+.main-content-add-task .container{
+    grid-area: header;
+}
+
+.add-task-container {
+    grid-area: add-task;
+    align-self: center;
+    justify-self: center;
+    width: 30rem;
+    height: 20rem;
+    border: 1px solid rgb(40, 36, 40);
+    border-radius: 10px;
+    box-shadow: 10px 10px 20px black;
+}
+
+.add-task-container form{
+    margin: 2rem;
+    display: grid;
+    min-height: 200px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-areas:
+        'task-text task-text priority' 
+        'date time .' 
+        'submit submit submit' ;
+    gap: 10px;
+}
+
+.add-task-container .inputs{
+    display: flex;
+    flex-direction: column;
+    justify-self: left;
+    font-size: 20px;
+}
+
+.add-task-container .text-input{
+    grid-area: task-text;
+    width: 100%;
+}
+
+.add-task-container .text-input input{
+    margin-top: 5px;
+    border-radius: 5px;
+    font-size: 15px;
+    padding: 1px;
+}
+
+.add-task-container .priority-input{
+    grid-area: priority;
+    justify-self: right;
+}
+
+.add-task-container .priority-input select{
+    margin-top: 5px;
+    border-radius: 5px;
+    font-size: 15px;
+    padding: 1px;
+    border: 2px solid black;
+}
+
+.add-task-container .date-input{
+    grid-area: date;
+}
+
+.add-task-container .date-input input{
+    margin-top: 5px;
+    border-radius: 5px;
+    font-size: 15px;
+    padding: 1px;
+    border: 2px solid black;
+}
+
+.add-task-container .time-input{
+    grid-area: time;
+    justify-self: right;
+}
+
+.add-task-container .time-input input{
+    margin-top: 5px;
+    border-radius: 5px;
+    font-size: 15px;
+    padding: 1px;
+    border: 2px solid black;
+}
+
+.add-task-container .submit-button{
+    grid-area: submit;
+}
+
+.add-task-container .submit-button button{
+    justify-self: right;
+    border-radius: 5px;
+    font-size: 15px;
+    margin-top: 3rem;
+    height: 2rem;
+    padding: 5px;
+}
+
+
+/* LABELS */
+.main-content-labels {
+    display: grid;
+    grid-template-rows: 80px 1fr;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-areas: 
+        'header header header header header'
+        '. left-labels mid-labels right-labels .' ;
+    justify-items: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.container {
+    grid-area: header;
+}
+
+.label-container h3 {
+    text-align: center;
+    padding-bottom: 20px;
+    font-size: 22px;
+}
+
+.label-container {
+    height: 20rem;
+    width: 20rem;
+   
+}
+
+.label-container table {
+    display: block;
+    border-collapse: collapse;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    table-layout: fixed;
+    text-align: left;
+    text-overflow:ellipsis;
+    box-shadow: 10px 10px 20px black;
+    border-radius: 0 0 10px 10px;
+}
+
+.label-container table tbody tr:hover {
+    background-color: white;
+    color: #12171e;
+    cursor: pointer;
+}
+
+
+.label-container thead{
+    height: 1.5rem;
+    background-color: #12171e;
+}
+
+.label-container th{
+    border: 2px solid white;
+    width: 100%;
+    padding: 5px;
+}
+
+.label-container th:first-child,
+.label-container td:first-child {
+    width: 15%;
+}
+
+.label-container td:nth-child(2),
+.label-container th:nth-child(2) {
+
+    text-align: right;
+}
+
+.label-container td {
+    padding: 5px;
+    padding-block: 10px;
+    border-bottom: 1px solid grey;
+}
+
+.left {
+    grid-area: left-labels;
+}
+
+.middle {
+    grid-area: mid-labels;
+}
+
+.right {
+    grid-area: right-labels;
+}
 
 

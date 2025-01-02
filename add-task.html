@@ -11,20 +11,51 @@
     <div class="sidebar">
         <special-sidebar></special-sidebar>
     </div>
-    <div class="main-content">
+    <div class="main-content main-content-add-task">
         <div class="container">
             <h1>Add A New Task</h1>
         </div>
-        
+        <div class="add-task-container">
+            <form id="task-form">
+                <div class="inputs text-input">
+                    <label for="task-input">New Task:</label>
+                    <input type="text" id="task-input" name="task-input" 
+                    placeholder="Ex: Go grocery shopping">
+                </div>
+                <div class="inputs priority-input">
+                    <label for="priority">Priority:</label>
+                    <select name="priority" id="priority">
+                        <option value="low">Low</option>
+                        <option value="med">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
+                <div class="inputs date-input">
+                    <label for="due-date">Select Date:</label>
+                    <input type="date" name="due-date" id="due-date">
+                </div>
+                <div class="inputs time-input">
+                    <label for="due-time">Time Due:</label>
+                    <input type="time" name="due-time" id="due-time">
+                </div>
+                <div class="submit-button">
+                    <button type="submit">Add To List</button>
+                </div>
+            </form>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
 <script>
-    let btn = document.querySelector('#btn')
-    let sidebar = document.querySelector('.sidebar')
+    document.addEventListener('DOMContentLoaded', () => {
+    const sidebar = document.querySelector('.sidebar');
+    const btn = sidebar.querySelector('#btn');
 
-    btn.onclick = function(){
-        sidebar.classList.toggle('active');
+    if (btn) {
+        btn.onclick = function() {
+            sidebar.classList.toggle('active');
+        };
     }
+});
 </script>
 </html>

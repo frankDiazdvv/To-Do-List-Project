@@ -11,40 +11,17 @@
     <div class="sidebar">
         <special-sidebar></special-sidebar>
     </div>
-    <div class="main-content main-content-dashboard">
+    <div class="main-content main-content-labels">
         <div class="container">
-            <h1>To-Do List</h1>
+            <h1>Labels</h1>
         </div>
-        <div class="due-today-container">
-            <div class="table-headers">
-                <h2>Due Today</h2>
-            </div>
-            <table class="task-table task-table__due-today">
+        <div class="label-container left">
+            <h3>Low Priority</h3>
+            <table class="left-table">
                 <thead>
                     <tr>
                         <th>Priority</th>
                         <th>Task</th>
-                        <th>Time</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Rows will be dynamically added here -->       
-                </tbody>
-            </table>
-        </div>
-        <div class="all-tasks-container">
-            <div class="table-headers">
-                <h2>All-Tasks</h2>
-            </div>
-            <table class="task-table task-table__all-tasks">
-                <thead>
-                    <tr>
-                        <th>Priority</th>
-                        <th>Task</th>
-                        <th>Due Date</th>
-                        <th>Time</th>
-                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -52,8 +29,36 @@
                 </tbody>
             </table>
         </div>
-    </div>
-    <script src="script.js"></script>
+        <div class="label-container middle">
+            <h3>Medium Priority</h3>
+            <table class="middle-table">
+                <thead>
+                    <tr>
+                        <th>Priority</th>
+                        <th>Task</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Rows will be dynamically added here -->
+                </tbody>
+            </table>
+        </div>
+        <div class="label-container right">
+            <h3>High Priority</h3>
+            <table class="right-table">
+                <thead>
+                    <tr>
+                        <th>Priority</th>
+                        <th>Task</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Rows will be dynamically added here -->
+                </tbody>
+            </table>
+        </div>
+    </div>    
+    <script src="script.js" defer></script>
 </body>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
