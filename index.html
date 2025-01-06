@@ -6,6 +6,7 @@
     <title>To-Do List</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="mediaqueries.css">
 </head>
 <body>
     <div class="sidebar">
@@ -25,7 +26,6 @@
                         <th>Priority</th>
                         <th>Task</th>
                         <th>Time</th>
-                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,13 +44,16 @@
                         <th>Task</th>
                         <th>Due Date</th>
                         <th>Time</th>
-                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
                     <!-- Rows will be dynamically added here -->
                 </tbody>
             </table>
+        </div>
+        <div class="leyend-container">
+            <p>* Click a task to mark it done</p>
+            <p>** Double-click a task to delete it</p>
         </div>
     </div>
     <script src="script.js"></script>

@@ -1,18 +1,3 @@
-function toggleStatus(circleElement) {
-    const row = circleElement.closest("tr");
-    const taskIndex = row.dataset.index;
-
-    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    if (!tasks[taskIndex]) {
-        console.error("Task index invalid:", taskIndex);
-        return;
-    }
-
-    tasks[taskIndex].completed = !tasks[taskIndex].completed;
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-    loadTasks();
-}
-
 class specialSidebar extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
@@ -53,7 +38,7 @@ class specialSidebar extends HTMLElement {
                 <span class="tooltip">Labels</span>
             </li>
             <li>
-                <a href="#about">
+                <a href="about.html">
                     <i class="bx bx-info-circle"></i>
                     <span class="nav-item">About</span>
                 </a>
@@ -92,6 +77,8 @@ if (form) {
 
         saveTask(task);
         form.reset();
+
+        window.location.href = "index.html"; // redirect to dashboard after submitting
     });
 }
 
@@ -121,14 +108,11 @@ function loadTasks() {
 
     tasks.forEach((task, index) => {
         const rowHTML = `
-            <tr data-index="${index}">
+            <tr data-index="${index}" class="${task.completed ? 'completed' : ''}">
                 <td>${task.priority}</td>
                 <td>${task.taskName}</td>
                 <td>${task.dueDate}</td>
                 <td>${task.dueTime}</td>
-                <td class="status">
-                    <div class="circle ${task.completed ? 'full' : ''}"></div>
-                </td>
             </tr>
         `;
 
@@ -136,13 +120,10 @@ function loadTasks() {
 
         if (task.dueDate === today) {
             const dueTodayRowHTML = `
-                <tr data-index="${index}">
+                <tr data-index="${index}" class="${task.completed ? 'completed' : ''}">
                     <td>${task.priority}</td>
                     <td>${task.taskName}</td>
                     <td>${task.dueTime}</td>
-                    <td class="status">
-                        <div class="circle ${task.completed ? 'full' : ''}"></div>
-                    </td>
                 </tr>
             `;
             dueTodayTable.insertAdjacentHTML('beforeend', dueTodayRowHTML);
@@ -151,14 +132,8 @@ function loadTasks() {
       
     });
 
-    // Add event listeners for double-click and status toggle
-    document.querySelectorAll('.task-table__all-tasks tbody tr, .task-table__due-today tbody tr').forEach((row) => {
-        row.addEventListener('dblclick', () => deleteTask(row.dataset.index));
-    });
-
-    document.querySelectorAll('.task-table__all-tasks tbody tr').forEach((row) => {
-        row.addEventListener('click', () => toggleStatus(row.dataset.index));
-    });
+    applyRowEventListeners(); // Reapply event listeners
+    
 }
 
 function loadLabelTask() {      
@@ -182,7 +157,7 @@ function loadLabelTask() {
     // Loop through tasks and insert rows
     tasks.forEach((task, index) => {
         const labelRowHTML = `
-            <tr data-index="${index}">
+            <tr data-index="${index}" class="${task.completed ? 'completed' : ''}">
                 <td>${task.priority}</td>
                 <td>${task.taskName}</td>
             </tr>
@@ -203,24 +178,52 @@ function loadLabelTask() {
         }
     });
 
-    // Add event listeners for double-click and status toggle
-    document.querySelectorAll('.left-table tbody tr, .middle-table tbody tr, .right-table tbody tr').forEach((row) => {
-        row.addEventListener('dblclick', () => deleteTask(row.dataset.index));
-    });
+    applyRowEventListeners(); // Reapply event listeners
 
-    document.querySelectorAll('.circle').forEach((circle) => {
-        circle.addEventListener('click', () => toggleStatus(circle));
-    });
 }
 
 document.addEventListener('DOMContentLoaded', function() {
     loadLabelTask();
 });
 
+// Add event listeners for double-click and status toggle
+function applyRowEventListeners() {
+    const rows = document.querySelectorAll('.task-table__all-tasks tbody tr, .task-table__due-today tbody tr, .left-table tbody tr, .middle-table tbody tr, .right-table tbody tr');
+    
+    rows.forEach((row) => {
+        let clickTimer;
+
+        // Single-click to toggle status
+        row.addEventListener('click', () => {
+            clearTimeout(clickTimer);
+            clickTimer = setTimeout(() => {
+                toggleStatus(row.dataset.index);
+            }, 170);
+        });
+
+        // Double-click to delete task
+        row.addEventListener('dblclick', () => {
+            clearTimeout(clickTimer);
+            deleteTask(row.dataset.index);
+        });
+    });
+}
+
 function deleteTask(index) {
     let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
     tasks.splice(index, 1);
     localStorage.setItem('tasks', JSON.stringify(tasks));
+    loadTasks();
+    loadLabelTask();
+}
+
+function toggleStatus(index){
+    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+    tasks[index].completed = !tasks[index].completed;
+
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    
     loadTasks();
     loadLabelTask();
 }

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="mediaqueries.css">
+</head>
+<body>
+    <div class="sidebar">
+        <special-sidebar></special-sidebar>
+    </div>
+    <div class="main-content main-content-about">
+        <div class="container">
+            <h1>About</h1>
+        </div>
+        <div class="about-container">
+            <div class="text-block">
+                <p>The purpose of this web application is to help users organize tasks in an efficient way. 
+                    Users will have the ability to enter their tasks for their list in the Add-Task tab. 
+                    Once the user enters their data, it will be automatically sent to the dashboard and the 
+                    labels pages. Within the dashboard tab, tasks will be ordered in the All-Tasks table, those
+                    that are due on the same day will automatically be displayed in the Due-Today tables. Users
+                    will have the ability to mark their tasks done by clicking them, while double-clicking will
+                    delete the task. The Labels page will output all the tasks organized by priority. There 
+                    will be 3 dynamic tables in which data will be displayed according to the priority. The 
+                    user will maintain the ability to mark tasks done or delete them as well.
+                </p>
+            </div>
+            <div class="disclaimer">
+                <img src="./assets/profile-pic.png" alt="Francisco Diaz" class="about-image">
+                <div class="disclaimer-text">
+                    <p>This application was fully developed by me, Francisco Diaz de Villalvilla, and no one else. 
+                        This project was created with the intention of improving readeability and code reutilization.
+                        If you have any ideas or proposals please contact me.
+                    </p>
+                </div>
+            </div>
+            <div class="contact-me">
+                <div class="contact-me-header">
+                    <h2>Contact Me</h2>
+                </div>
+                <div class="contact-me-links">
+                    <a href="https://www.linkedin.com/in/frankdiazprogramming" class="linkedin-link">
+                        <img src="./assets/linkedin-logo.png" alt="linkedin-logo" class="logo">
+                        <p>Linkedin</p>
+                    </a>
+                    <a href="https://github.com/frankDiazdvv/" class="github-link">
+                        <img src="./assets/github-logo.png" alt="linkedin-logo" class="logo">
+                        <p>GitHub</p>
+                    </a>
+                    <a href="https://frankdiazdvv.github.io/Portfolio/" class="portfolio-link">
+                        <img src="./assets/website.png" alt="linkedin-logo" class="logo">
+                        <p>Personal Website</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const sidebar = document.querySelector('.sidebar');
+    const btn = sidebar.querySelector('#btn');
+
+    if (btn) {
+        btn.onclick = function() {
+            sidebar.classList.toggle('active');
+        };
+    }
+});
+</script>
+</html>

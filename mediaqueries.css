@@ -1,0 +1,176 @@
+@media  screen and (max-width: 1200px) {
+/* LABELS */
+
+.main-content-labels {
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content-labels .container {
+    height: 50px;
+}
+
+.label-container h3 {
+    padding-bottom: 5px;
+    font-size: 22px;
+    cursor: default;
+}
+
+.label-container {
+    height: 9rem;
+    width: 25rem;
+    margin-bottom: 25px;
+}
+
+}
+
+
+@media screen and (max-width: 920px) {
+
+    .main-content-dashboard {
+        grid-template-columns: 1fr;
+        grid-template-rows: 80px repeat(2, 15rem) 80px;
+        grid-template-areas: 
+            'header'
+            'due-today'
+            'all-tasks'
+            'leyend';
+    }
+
+    /* ABOUT */
+    .main-content-about .container{
+        height: 60px;
+    }
+
+    .about-container .text-block {
+        font-size: 16px;
+        line-height: 1.4;
+        padding-inline: 2vw;
+        max-width: 700px;
+    }
+    
+    .about-container .disclaimer {
+        flex-direction: column;
+        margin-top: 1rem;
+    }
+
+    .disclaimer .disclaimer-text {
+        font-size: 14px;
+        max-width: 500px;
+        line-height: 1.2;
+    }
+}
+
+@media  screen and (max-width: 569px) {
+
+    /* SIDEBAR */
+
+    .sidebar {
+        width: 40px;
+    }
+
+    .logo-img {
+        width: 40px;
+    }
+
+    .sidebar ul li {
+        width: 100%;
+    }
+
+    /* DASHBOARD */
+    
+    .task-table {
+        max-width: 25rem; 
+    }
+
+    .due-today-container, 
+    .all-tasks-container {
+        padding-inline: 5px;
+    }
+
+    .task-table__all-tasks th:last-child,
+    .task-table__all-tasks td:last-child {
+        display: none;
+    }
+
+    /* ADD TASKS */
+
+    .main-content-add-task .container {
+        height: 50px;
+    }
+
+    .add-task-container {
+        width: 23rem;
+        height: 15rem;
+    }
+
+    .add-task-container form {
+        margin: 10px;
+        max-height: 100px;
+    }
+
+    .add-task-container .inputs{
+        font-size: 16px;
+    }
+
+    .add-task-container .priority-input {
+        width: 50px;
+    }
+
+    /* LABELS */
+
+    .label-container {
+        height: 9rem;
+        width: 20rem;
+        margin-bottom: 20px;
+    }
+
+    /* ABOUT */
+
+    .contact-me .contact-me-header {
+        display: none;
+    }
+
+    .about-container .text-block {
+        font-size: 14px;
+        line-height: 1.3;
+        padding-inline: 0;
+        max-width: 700px;
+    }
+
+    .about-container .disclaimer {
+        margin-top: 15px;
+        gap: 5px;
+    }
+
+    .disclaimer .about-image{
+        width: 60px;
+        height: 60px;
+        border-radius: 30%;
+    }
+
+    .disclaimer .disclaimer-text {
+        font-size: 12px;
+        max-width: 500px;
+        line-height: 1.3;
+    }
+
+    .about-container .contact-me {
+        margin-top: 0;
+    }
+
+    .contact-me .contact-me-links {
+        padding: 6px;
+    
+    }
+
+    .contact-me-links a {
+        font-size: 14px;
+    }
+
+    .contact-me-links img {
+        width: 20px;
+        height: 20px;
+    }
+
+}

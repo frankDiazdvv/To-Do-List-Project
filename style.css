@@ -4,6 +4,10 @@
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
+body {
+    background-color: #1e242b;
+}
+
 /* SIDEBAR */
 
 
@@ -23,7 +27,7 @@
     width: 50px;
     background-color: #12171e;
     padding: 0.4rem 0.8rem;
-    transition: all .2s ease;
+    transition: all 0.2s ease;
     z-index: 10;
 }
 
@@ -164,16 +168,18 @@
 /* MAIN CONTENT */
 
 .main-content {
+    padding: 0;
+    margin: 0;
     background-color: #1e242b;
     color: white;
     z-index: 1;
-    position: relative;
+    position: absolute;
     min-height: 100vh;
     top: 0;
     left: 75px;
     transition: all 0.2s ease;
-    width: calc(100% - 139px);
-    padding: 1rem 2rem;
+    width: calc(100% - 75px);
+    min-width: calc(100% - 270px);
 }
 
 .main-content-dashboard {
@@ -183,7 +189,19 @@
     grid-template-areas: 
     'header header'
     'due-today all-tasks'
-    'bottom-left all-tasks';
+    'leyend all-tasks';
+}
+
+.leyend-container {
+    grid-area: leyend;
+    padding: 3rem;
+    font-style: italic;
+    align-content: end;
+}
+
+.completed { /*for completed tasks */
+    text-decoration: line-through;
+    opacity: 0.6;
 }
 
 /* MAIN CONTENT -- DUE TODAY */
@@ -285,28 +303,8 @@
 
 tr.completed td {
     text-decoration: line-through;
-    color: whitesmoke
 }
 
-.circle {
-    width: 15px;
-    height: 15px;
-    border: 1px solid white; /* empty circle */
-    border-radius: 20%;
-    cursor: pointer;
-    background-color: transparent;
-    display: inline-block;
-    transition: background-color .2s ease;
-    margin-top: 5px;
-}
-
-.circle.full {
-    background-color: green;
-}
-
-.circle:hover {
-    background-color: white;
-}
 
 
 /* MAIN CONTENT - ALL TASKS TABLE */
@@ -321,13 +319,13 @@ tr.completed td {
 }
 
 .task-table__all-tasks {
-    height: 35rem;
+    height: 90%;
     width: 100%;
 }
 
 .task-table__all-tasks th:nth-child(3),
 .task-table__all-tasks td:nth-child(3) {
-    width: 20rem;
+    width: 2rem;
 }
 
 
@@ -367,7 +365,7 @@ tr.completed td {
     grid-template-areas:
         'task-text task-text priority' 
         'date time .' 
-        'submit submit submit' ;
+        '. submit .' ;
     gap: 10px;
 }
 
@@ -430,15 +428,24 @@ tr.completed td {
 
 .add-task-container .submit-button{
     grid-area: submit;
+    align-self: center;
+    justify-self: center;
+    margin-top: 2.5rem;
 }
 
 .add-task-container .submit-button button{
-    justify-self: right;
-    border-radius: 5px;
+    border-radius: 15px;
     font-size: 15px;
-    margin-top: 3rem;
-    height: 2rem;
-    padding: 5px;
+    height: auto;
+    width: 10rem;
+    padding: 10px;
+    background-color:white;
+    border: none;
+    color: black;
+}
+
+.add-task-container .submit-button button:hover{
+    filter: brightness(60%);
 }
 
 
@@ -463,11 +470,13 @@ tr.completed td {
     text-align: center;
     padding-bottom: 20px;
     font-size: 22px;
+    cursor: default;
 }
 
 .label-container {
     height: 20rem;
     width: 20rem;
+    margin-bottom: 8rem;
    
 }
 
@@ -485,19 +494,18 @@ tr.completed td {
 }
 
 .label-container table tbody tr:hover {
-    background-color: white;
     color: #12171e;
     cursor: pointer;
 }
 
-
 .label-container thead{
+    cursor: default;
     height: 1.5rem;
-    background-color: #12171e;
+    border-bottom: 3px solid black;
+    color: #12171e;
 }
 
 .label-container th{
-    border: 2px solid white;
     width: 100%;
     padding: 5px;
 }
@@ -509,7 +517,6 @@ tr.completed td {
 
 .label-container td:nth-child(2),
 .label-container th:nth-child(2) {
-
     text-align: right;
 }
 
@@ -531,4 +538,117 @@ tr.completed td {
     grid-area: right-labels;
 }
 
+.left thead tr {
+    background-color: green;
+}
 
+.middle thead tr {
+    background-color: yellow;
+    border-color: #12171e;
+}
+
+.right thead tr {
+    background-color: red;
+}
+
+.left tbody tr:hover{
+    background-color: rgb(103, 146, 103);
+}
+
+.middle tbody tr:hover {
+    background-color: rgb(249, 249, 124);
+}
+
+.right tbody tr:hover {
+    background-color: rgb(255, 111, 111);
+}
+
+
+/* ABOUT */
+
+.container h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+}
+
+.about-container {
+    display: grid;
+    grid-template-rows: auto auto auto;
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+        'about-text'
+        'disclaimer'
+        'contact-me';
+    justify-items: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.about-container .text-block {
+    grid-area: about-text;
+    padding-inline: 5vw;
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+.about-container .disclaimer {
+    grid-area: disclaimer;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+    margin-top: 5rem;
+}
+
+.disclaimer .about-image{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.disclaimer .disclaimer-text {
+    max-width: 600px;
+    line-height: 1.5;
+    text-align: left;
+}
+
+.about-container .contact-me {
+    grid-area: contact-me;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.contact-me .contact-me-header {
+    padding-bottom: 10px;
+}
+
+.contact-me .contact-me-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border: 2px solid #12171e;
+    border-radius: 15px;
+    padding: 10px;
+    gap: 1rem;
+
+}
+
+.contact-me-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    text-decoration: none;
+    color: inherit;
+
+}
+
+.contact-me-links img {
+    width: 30px;
+    height: 30px;
+}

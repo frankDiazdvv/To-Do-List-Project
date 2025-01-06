@@ -6,6 +6,7 @@
     <title>To-Do List</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="mediaqueries.css">
 </head>
 <body>
     <div class="sidebar">
@@ -32,7 +33,7 @@
                 </div>
                 <div class="inputs date-input">
                     <label for="due-date">Select Date:</label>
-                    <input type="date" name="due-date" id="due-date">
+                    <input type="date" min="" name="due-date" id="due-date">
                 </div>
                 <div class="inputs time-input">
                     <label for="due-time">Time Due:</label>
@@ -47,6 +48,25 @@
     <script src="script.js"></script>
 </body>
 <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const today = new Date();
+    const localDate = new Date(today.getTime() - today.getTimezoneOffset() * 60000)
+        .toISOString()
+        .split('T')[0];
+
+    document.getElementById('due-date').setAttribute('min', localDate);
+
+    const currentTime = today.toTimeString().split(' ')[0].slice(0, 5);
+    document.getElementById('due-time').setAttribute('min', currentTime);
+});
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Time();
+            const localDate = new Date(today.getTime() - today.getTimezoneOffset() * 60000)
+            .toISOString().split('T')[0];
+            document.getElementById('due-date').setAttribute('min', today);
+        });
+
     document.addEventListener('DOMContentLoaded', () => {
     const sidebar = document.querySelector('.sidebar');
     const btn = sidebar.querySelector('#btn');
