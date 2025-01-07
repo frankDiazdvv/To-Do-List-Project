@@ -178,6 +178,7 @@
         .add-task-container {
             width: 90%;
             height: 25rem;
+            margin-bottom: 10vw;
         }
     
         .add-task-container form {
@@ -190,6 +191,7 @@
                 'priority'
                 'submit';
             gap: .7rem;
+            height: 80%;
         }
     
         .add-task-container .text-input input,
