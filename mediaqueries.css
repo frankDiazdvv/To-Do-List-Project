@@ -1,208 +1,245 @@
 @media  screen and (max-width: 1200px) {
-/* LABELS */
-
-.main-content-labels {
-    display: flex;
-    flex-direction: column;
-}
-
-.main-content-labels .container {
-    height: 50px;
-}
-
-.label-container h3 {
-    padding-bottom: 5px;
-    font-size: 22px;
-    cursor: default;
-}
-
-.label-container {
-    height: 9rem;
-    width: 25rem;
-    margin-bottom: 25px;
-}
-
-}
-
-
-@media screen and (max-width: 920px) {
-
-    .main-content-dashboard {
-        grid-template-columns: 1fr;
-        grid-template-rows: 80px repeat(2, 15rem) 80px;
-        grid-template-areas: 
-            'header'
-            'due-today'
-            'all-tasks'
-            'leyend';
-    }
-
-    /* ABOUT */
-    .main-content-about .container{
-        height: 60px;
-    }
-
-    .about-container .text-block {
-        font-size: 16px;
-        line-height: 1.4;
-        padding-inline: 2vw;
-        max-width: 700px;
+    /* LABELS */
+    
+    .main-content-labels {
+        display: flex;
+        flex-direction: column;
     }
     
-    .about-container .disclaimer {
-        flex-direction: column;
-        margin-top: 1rem;
-    }
-
-    .disclaimer .disclaimer-text {
-        font-size: 14px;
-        max-width: 500px;
-        line-height: 1.2;
-    }
-}
-
-@media  screen and (max-width: 569px) {
-
-    /* SIDEBAR */
-
-    .sidebar {
-        right: 0;
-        width: 100%;
+    .main-content-labels .container {
         height: 50px;
     }
-    .sidebar #btn {
-        display: none;
+    
+    .label-container h3 {
+        padding-bottom: 5px;
+        font-size: 22px;
+        cursor: default;
     }
-
-    .logo-img, .top, .user {
-        display: none;
-    }
-
-    .sidebar ul {
-        display: flex;
-        height: 50px;
-        justify-self: center;
-        align-items: center;
-    }
-
-    .sidebar ul li a {
-        font-size: 14px;
-        
-    }
-
-    .sidebar.active .nav-item {
-        display: none;
-    }
-
-    .sidebar ul li:hover .tooltip {
-        display: none;
-    }
-
-
-    /* DASHBOARD */
-
-    .main-content {
-        height: calc(100% - 50px);
-        width: 100%;
-        left: 0;
-        right: 0;
-        top: 50px;
-        
-    }
-
-    .task-table {
-        max-width: 25rem; 
-    }
-
-    .due-today-container, 
-    .all-tasks-container {
-        width: 100%;
-        padding-inline: 1rem;
-    }
-
-    .task-table__all-tasks th:last-child,
-    .task-table__all-tasks td:last-child {
-        display: none;
-    }
-
-    /* ADD TASKS */
-
-    .main-content-add-task .container {
-        height: 50px;
-    }
-
-    .add-task-container {
-        width: 23rem;
-        height: 15rem;
-    }
-
-    .add-task-container form {
-        margin: 10px;
-        max-height: 100px;
-    }
-
-    .add-task-container .inputs{
-        font-size: 16px;
-    }
-
-    .add-task-container .priority-input {
-        width: 50px;
-    }
-
-    /* LABELS */
-
+    
     .label-container {
         height: 9rem;
-        width: 20rem;
-        margin-bottom: 20px;
+        width: 25rem;
+        margin-bottom: 25px;
     }
-
-    /* ABOUT */
-
-    .contact-me .contact-me-header {
-        display: none;
-    }
-
-    .about-container .text-block {
-        font-size: 14px;
-        line-height: 1.3;
-        padding-inline: 0;
-        max-width: 700px;
-    }
-
-    .about-container .disclaimer {
-        margin-top: 15px;
-        gap: 5px;
-    }
-
-    .disclaimer .about-image{
-        width: 60px;
-        height: 60px;
-        border-radius: 30%;
-    }
-
-    .disclaimer .disclaimer-text {
-        font-size: 12px;
-        max-width: 500px;
-        line-height: 1.3;
-    }
-
-    .about-container .contact-me {
-        margin-top: 0;
-    }
-
-    .contact-me .contact-me-links {
-        padding: 6px;
     
     }
-
-    .contact-me-links a {
-        font-size: 14px;
+    
+    
+    @media screen and (max-width: 920px) {
+    
+        .main-content-dashboard {
+            grid-template-columns: 1fr;
+            grid-template-rows: 80px repeat(2, 15rem) 80px;
+            grid-template-areas: 
+                'header'
+                'due-today'
+                'all-tasks'
+                'leyend';
+        }
+    
+        /* ABOUT */
+        .main-content-about .container{
+            height: 60px;
+        }
+    
+        .about-container .text-block {
+            font-size: 16px;
+            line-height: 1.4;
+            padding-inline: 2vw;
+            max-width: 700px;
+        }
+        
+        .about-container .disclaimer {
+            flex-direction: column;
+            margin-top: 1rem;
+        }
+    
+        .disclaimer .disclaimer-text {
+            font-size: 14px;
+            max-width: 500px;
+            line-height: 1.2;
+        }
     }
-
-    .contact-me-links img {
-        width: 20px;
-        height: 20px;
+    
+    @media  screen and (max-width: 569px) {
+    
+        body, html {
+            overflow: hidden;
+        }
+        
+        /* SIDEBAR */
+    
+        .sidebar {
+            position: relative;
+            right: 0;
+            width: 100%;
+            height: 50px;
+            overflow: hidden;
+        }
+        .sidebar #btn {
+            display: none;
+        }
+    
+        .logo-img, .top, .user {
+            display: none;
+        }
+    
+        .sidebar ul {
+            display: flex;
+            height: 50px;
+            justify-self: center;
+            align-items: center;
+        }
+    
+        .sidebar ul li a {
+            font-size: 18px;
+        }
+    
+        .sidebar ul li a .bx-list-check {
+            font-size: 24px;
+        }
+    
+        .sidebar.active .nav-item {
+            display: none;
+        }
+    
+        .sidebar ul li:hover .tooltip {
+            display: none;
+        }
+    
+    
+        /* DASHBOARD */
+    
+        .main-content {
+            position: absolute;
+            top: 50px;
+            margin-top: 20px;
+            width: 100%;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+        }
+    
+        .task-table {
+            max-width: 25rem; 
+        }
+    
+        .due-today-container, 
+        .all-tasks-container {
+            width: 100%;
+            padding-inline: 1rem;
+        }
+    
+        .all-tasks-container {
+            min-height: 25rem;
+            margin-top: 2rem;
+        }
+    
+        .leyend-container {
+            margin-top: 12rem;
+        }
+    
+        .task-table__all-tasks th:last-child,
+        .task-table__all-tasks td:last-child {
+            display: none;
+        }
+    
+        /* ADD TASKS */
+    
+        .main-content-add-task .container {
+            height: 50px;
+        }
+    
+        .add-task-container {
+            width: 20rem;
+            height: 30rem;
+        }
+    
+        .add-task-container form {
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: repeat(4, 1fr);
+            grid-template-areas: 
+                'task-text task-text'
+                'date time'
+                'priority priority'
+                'submit submit';
+            margin: 20px;
+            max-height: 150px;
+            gap: 4rem;
+        }
+    
+        .add-task-container .inputs{
+            font-size: 22px;
+        }
+    
+        .add-task-container .priority-input {
+            width: 25%;
+            justify-self: left;
+        }
+    
+        .add-task-container .text-input input {
+            height: 2rem;
+        }
+    
+    
+    
+    
+    
+        /* LABELS */
+    
+        .label-container {
+            height: 9rem;
+            width: 20rem;
+            margin-bottom: 20px;
+        }
+    
+        /* ABOUT */
+    
+        .contact-me .contact-me-header {
+            display: none;
+        }
+    
+        .about-container .text-block {
+            font-size: 14px;
+            line-height: 1.3;
+            padding-inline: 0;
+            max-width: 700px;
+        }
+    
+        .about-container .disclaimer {
+            margin-top: 15px;
+            gap: 5px;
+        }
+    
+        .disclaimer .about-image{
+            width: 60px;
+            height: 60px;
+            border-radius: 30%;
+        }
+    
+        .disclaimer .disclaimer-text {
+            font-size: 12px;
+            max-width: 500px;
+            line-height: 1.3;
+        }
+    
+        .about-container .contact-me {
+            margin-top: 0;
+        }
+    
+        .contact-me .contact-me-links {
+            padding: 6px;
+        
+        }
+    
+        .contact-me-links a {
+            font-size: 14px;
+        }
+    
+        .contact-me-links img {
+            width: 20px;
+            height: 20px;
+        }
+    
     }
-
-}

@@ -398,7 +398,6 @@ tr.completed td {
     border-radius: 5px;
     font-size: 15px;
     padding: 1px;
-    border: 2px solid black;
 }
 
 .add-task-container .date-input{
@@ -410,7 +409,6 @@ tr.completed td {
     border-radius: 5px;
     font-size: 15px;
     padding: 1px;
-    border: 2px solid black;
 }
 
 .add-task-container .time-input{
@@ -423,7 +421,6 @@ tr.completed td {
     border-radius: 5px;
     font-size: 15px;
     padding: 1px;
-    border: 2px solid black;
 }
 
 .add-task-container .submit-button{
