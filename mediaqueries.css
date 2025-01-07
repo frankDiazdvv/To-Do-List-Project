@@ -89,6 +89,7 @@
             height: 50px;
             justify-self: center;
             align-items: center;
+            margin-left: 2rem;
         }
     
         .sidebar ul li a {
@@ -96,7 +97,8 @@
         }
     
         .sidebar ul li a .bx-list-check {
-            font-size: 24px;
+            font-size: 26px;
+            margin-top: 1.1rem;
         }
     
         .sidebar.active .nav-item {
@@ -120,24 +122,41 @@
             bottom: 0;
             overflow: hidden;
         }
+
+
+        .main-content-dashboard{
+            grid-template-rows: 80px repeat(2, 12rem) 10rem;
+        }
+        
+
     
         .task-table {
             max-width: 25rem; 
+        }
+
+        .task-table thead, .task-table td {
+            height: 1rem;
+            line-height: .8;
         }
     
         .due-today-container, 
         .all-tasks-container {
             width: 100%;
             padding-inline: 1rem;
+            font-size: 12px;
+        }
+        
+        .due-today-container {
+            height: 10rem;
         }
     
         .all-tasks-container {
-            min-height: 25rem;
-            margin-top: 2rem;
+            height: 15rem;
         }
     
         .leyend-container {
-            margin-top: 12rem;
+            margin-top: 0;
+            text-align: center;
         }
     
         .task-table__all-tasks th:last-child,
@@ -153,7 +172,8 @@
     
         .add-task-container {
             width: 20rem;
-            height: 30rem;
+            height: 25rem;
+            margin-bottom: 7rem;
         }
     
         .add-task-container form {
@@ -166,7 +186,7 @@
                 'submit submit';
             margin: 20px;
             max-height: 150px;
-            gap: 4rem;
+            gap: 2rem;
         }
     
         .add-task-container .inputs{
@@ -182,14 +202,11 @@
             height: 2rem;
         }
     
-    
-    
-    
-    
+        
         /* LABELS */
     
         .label-container {
-            height: 9rem;
+            height: 8.5rem;
             width: 20rem;
             margin-bottom: 20px;
         }

@@ -49,33 +49,39 @@
 </body>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-    const today = new Date();
-    const localDate = new Date(today.getTime() - today.getTimezoneOffset() * 60000)
-        .toISOString()
-        .split('T')[0];
-
-    document.getElementById('due-date').setAttribute('min', localDate);
-
-    const currentTime = today.toTimeString().split(' ')[0].slice(0, 5);
-    document.getElementById('due-time').setAttribute('min', currentTime);
-});
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const today = new Time();
-            const localDate = new Date(today.getTime() - today.getTimezoneOffset() * 60000)
-            .toISOString().split('T')[0];
-            document.getElementById('due-date').setAttribute('min', today);
-        });
-
-    document.addEventListener('DOMContentLoaded', () => {
-    const sidebar = document.querySelector('.sidebar');
-    const btn = sidebar.querySelector('#btn');
-
-    if (btn) {
-        btn.onclick = function() {
-            sidebar.classList.toggle('active');
-        };
-    }
-});
-</script>
+        // Set minimum date for due-date input
+        const today = new Date();
+        const localDate = new Date(today.getTime() - today.getTimezoneOffset() * 60000)
+            .toISOString()
+            .split('T')[0];
+        document.getElementById('due-date').setAttribute('min', localDate);
+    
+        // Set minimum time for due-time input (only if the selected date is today)
+        const dueDateInput = document.getElementById('due-date');
+        const dueTimeInput = document.getElementById('due-time');
+        
+        if (dueDateInput && dueTimeInput) {
+            dueDateInput.addEventListener('change', function() {
+                const selectedDate = dueDateInput.value;
+                if (selectedDate === localDate) {
+                    const currentTime = today.toTimeString().split(' ')[0].slice(0, 5);
+                    dueTimeInput.setAttribute('min', currentTime);
+                } else {
+                    dueTimeInput.removeAttribute('min');
+                }
+            });
+        }
+    
+        // Sidebar toggle functionality
+        const sidebar = document.querySelector('.sidebar');
+        const btn = sidebar?.querySelector('#btn');
+    
+        if (btn) {
+            btn.onclick = function() {
+                sidebar.classList.toggle('active');
+            };
+        }
+    });
+    </script>
+    
 </html>
