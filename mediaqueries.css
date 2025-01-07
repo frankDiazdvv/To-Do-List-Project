@@ -123,15 +123,16 @@
             overflow: hidden;
         }
 
-
         .main-content-dashboard{
             grid-template-rows: 80px repeat(2, 12rem) 10rem;
         }
         
-
     
-        .task-table {
-            max-width: 25rem; 
+        .due-today-container,
+        .all-tasks-container {
+            max-width: 90%;
+            justify-self: center;
+            
         }
 
         .task-table thead, .task-table td {
@@ -200,6 +201,7 @@
     
         .add-task-container .text-input input {
             height: 2rem;
+            width: 100%;
         }
     
         
