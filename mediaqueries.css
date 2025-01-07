@@ -178,7 +178,9 @@
         .add-task-container {
             width: 90%;
             height: 25rem;
-            margin-bottom: 14vw;
+            align-self: center;
+            justify-self: center;
+            margin-bottom: 20vw;
         }
     
         .add-task-container form {
