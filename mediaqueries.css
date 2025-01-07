@@ -140,7 +140,7 @@
         }
 
         .task-table thead, .task-table td {
-            height: auto;
+            height: 2rem;
             line-height: 1;
         }
     
@@ -176,24 +176,42 @@
         }
     
         .add-task-container {
-            width: 20rem;
+            width: 90%;
             height: 25rem;
-            margin-bottom: 7rem;
         }
     
         .add-task-container form {
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: repeat(4, 1fr);
+            grid-template-columns: 1fr;
+            grid-template-rows: auto;
             grid-template-areas: 
-                'task-text task-text'
-                'date time'
-                'priority priority'
-                'submit submit';
-            margin: 20px;
-            max-height: 150px;
-            gap: 2rem;
+                'task-text'
+                'date'
+                'time'
+                'priority'
+                'submit';
+            gap: .7rem;
         }
     
+        .add-task-container .text-input input,
+        .add-task-container .priority-input select,
+        .add-task-container .date-input input,
+        .add-task-container .time-input input {
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+            padding: 2px;
+        }
+        
+        .add-task-container .date-input,
+        .add-task-container .time-input {
+            justify-self: stretch;
+            width: 100%;
+        }
+
+        .add-task-container .submit-button {
+            justify-self: center;
+        }
+
         .add-task-container .inputs{
             font-size: 22px;
         }
@@ -202,13 +220,7 @@
             width: 25%;
             justify-self: left;
         }
-    
-        .add-task-container .text-input input {
-            height: 2rem;
-            width: 100%;
-            max-width: 300px;
-        }
-    
+
         
         /* LABELS */
     
